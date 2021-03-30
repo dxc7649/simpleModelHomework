@@ -25,29 +25,27 @@ const router = require('./router.js');
 // your Config Vars in the Heroku Dashboard > Settings > Config Vars section.
 // otherwise fallback to localhost.
 // The string after mongodb://localhost is the database name. It can be anything you want.
-//const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/simpleMVCExample';
+// const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/simpleMVCExample';
 const dbURL = 'mongodb+srv://davidChen:qawsedazsxdcA@cluster0.c80vb.mongodb.net/simpleModelHomework';
-
 
 // A number of options for Mongoose to turn on newer features supported by
 // newer version of MongoDB.
 const mongooseOptions = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-}
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+};
 
 // call mongoose's connect function and pass in the url and options object.
 // If there are any errors connecting, we will throw it and kill the server.
 // Once connected, the mongoose package will stay connected for every file
 // that requires it in this project
 mongoose.connect(dbURL, mongooseOptions, (err) => {
-    if (err) {
-        console.log('Could not connect to database');
-        throw err;
-    }
+  if (err) {
+    console.log('Could not connect to database');
+    throw err;
+  }
 });
-
 
 // Port set by process.env.PORT environment variable.
 // If the process.env.PORT variable or the env.NODE_PORT variables do not exist, use port 3000
@@ -67,7 +65,7 @@ app.use(compression());
 
 // parse form POST requests as application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false,
 }));
 
 // parse application/json body requests.
@@ -81,7 +79,7 @@ app.use(bodyParser.json());
 // You can use other view engines besides handlebars
 // We will also set the default layout to nothing
 app.engine('handlebars', expressHandlebars({
-    defaultLayout: '',
+  defaultLayout: '',
 }));
 app.set('view engine', 'handlebars');
 
@@ -100,9 +98,9 @@ router(app);
 
 // Tell the app to listen on the specified port
 app.listen(port, (err) => {
-    // if the app fails, throw the err
-    if (err) {
-        throw err;
-    }
-    console.log(`Listening on port ${port}`);
+  // if the app fails, throw the err
+  if (err) {
+    throw err;
+  }
+  console.log(`Listening on port ${port}`);
 });
